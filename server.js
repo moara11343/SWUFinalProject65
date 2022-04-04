@@ -103,17 +103,17 @@ const upload = multer({ storage:storage })
 
 
 app.get("/user",(req,res)=>{
-    res.render("username")
+    res.render("userprofile")
 })
 
 app.post("/user",upload.single("image"),(req,res)=>{
-  if (err){
-    throw console.error();
-   } else{
+  // if (err){
+  //   throw console.error();
+  //  } else{
    console.log(req.file)
-   dbConnectionn.query("UPDATE `User` SET `img_user`= '${req.file.path}' ") 
+  //  dbConnectionn.query("UPDATE `User` SET `img_user` ") 
    res.send("upload successful")
-  }
+  // }
   // console.log(JSON.stringify(req.file))
   // res.send("ok")
 
