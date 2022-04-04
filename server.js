@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var session = require("express-session");
 var bodyParser = require("body-parser");
-
+var update = require("./update")
 var path = require("path");
 const PORT = process.env.PORT || 3000
 const donenv = require('dotenv')
@@ -106,20 +106,21 @@ app.get("/user",(req,res)=>{
     res.render("userprofile")
 })
 
-app.post("/user",upload.single("image"),(req,res)=>{
-  // if (err){
-  //   throw console.error();
-  //  } else{
-   console.log(req.file)
-  //  dbConnectionn.query("UPDATE `User` SET `img_user` ") 
-   res.send("upload successful")
-  // }
-  // console.log(JSON.stringify(req.file))
-  // res.send("ok")
-
+app.post("/user", upload.single('image'), (req, res) => {
+  if (!req.file) {
+      console.log("No file upload");
+  } else {
+      console.log(req.file.filename)
+      var imgsrc = 'img/' + req.file.filename
+      var insertData = "UPDATE `User` SET `img_user`= (?) WHERE 1"
+      dbConnectionn.query(insertData, [imgsrc], (err, result) => {
+          if (err) throw err
+          // console.log("file uploaded")
+          console.log(req.file)
+          res.send("upload successful")
+      })
+  }
 });
-
-
 
   app.listen(PORT);
   console.log("running on port " + PORT);  
