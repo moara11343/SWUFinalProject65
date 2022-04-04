@@ -88,6 +88,38 @@ function (error, results, fields) {
 });
 });
 
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './img')
+  },
+  filename: (req, file, cb) => {
+      cb(null, 'file-' + Date.now() + '.' +
+      file.originalname.split('.')[file.originalname.split('.').length-1])}
+})
+
+const upload = multer({ storage:storage })
+
+
+app.get("/user",(req,res)=>{
+    res.render("username")
+})
+
+app.post("/user",upload.single("image"),(req,res)=>{
+  if (err){
+    throw console.error();
+   } else{
+   console.log(req.file)
+   dbConnectionn.query("UPDATE `User` SET `img_user`= '${req.file.path}' ") 
+   res.send("upload successful")
+  }
+  // console.log(JSON.stringify(req.file))
+  // res.send("ok")
+
+});
+
+
 
   app.listen(PORT);
   console.log("running on port " + PORT);  
