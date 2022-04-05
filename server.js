@@ -224,7 +224,7 @@ app.post("/profile", upload.single('image'), (req, res) => {
   } else {
       console.log(req.file.filename)
       var imgsrc = 'img/' + req.file.filename
-      var insertData = "UPDATE `User` SET `img_user`= (?) WHERE 1 "
+      var insertData = ("UPDATE `User` SET `img_user`= (?) WHERE Username = ?",[session.studentID]);
       dbConnectionn.query(insertData, [imgsrc], (err, result) => {
           if (err) throw err
           // console.log("file uploaded")
