@@ -214,21 +214,22 @@ const storage = multer.diskStorage({
 const upload = multer({ storage:storage })
 
 
-app.get("/user",(req,res)=>{
+app.get("/profile",(req,res)=>{
     res.render("userprofile")
 })
 
-app.post("/user", upload.single('image'), (req, res) => {
+app.post("/profile", upload.single('image'), (req, res) => {
   if (!req.file) {
       console.log("No file upload");
   } else {
       console.log(req.file.filename)
       var imgsrc = 'img/' + req.file.filename
-      var insertData = "UPDATE `User` SET `img_user`= (?) WHERE 1"
+      var insertData = "UPDATE `User` SET `img_user`= (?) WHERE 1 "
       dbConnectionn.query(insertData, [imgsrc], (err, result) => {
           if (err) throw err
           // console.log("file uploaded")
           console.log(req.file)
+          console.log("upload successful")
           res.send("upload successful")
       })
   }
