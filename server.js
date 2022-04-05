@@ -140,7 +140,8 @@ app.get("/main", function(req,res){
     studentID : session.studentID ,
     major : session.Major ,
     Year : session.Year ,
-    status : session.status 
+    status : session.status,
+    imgpath : session.img
   });
 });
 
