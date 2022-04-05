@@ -198,6 +198,41 @@ function getuidf() {
   return id.toString(16);
 }
 
+//upload pic
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './img')
+  },
+  filename: (req, file, cb) => {
+      cb(null, 'file-' + Date.now() + '.' +
+      file.originalname.split('.')[file.originalname.split('.').length-1])}
+})
+
+const upload = multer({ storage:storage })
+
+
+app.get("/user",(req,res)=>{
+    res.render("userprofile")
+})
+
+app.post("/user", upload.single('image'), (req, res) => {
+  if (!req.file) {
+      console.log("No file upload");
+  } else {
+      console.log(req.file.filename)
+      var imgsrc = 'img/' + req.file.filename
+      var insertData = "UPDATE `User` SET `img_user`= (?) WHERE 1"
+      dbConnectionn.query(insertData, [imgsrc], (err, result) => {
+          if (err) throw err
+          // console.log("file uploaded")
+          console.log(req.file)
+          res.send("upload successful")
+      })
+  }
+});
+
 // end gen func
 
   app.listen(PORT);

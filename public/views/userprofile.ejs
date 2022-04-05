@@ -141,11 +141,15 @@
                                   
                                 </div>
                           
-                          <div class="col-sm-10 col-lg-5 ">
-                              <div class="mt-2 d-flex justify-content-center ">
-                                  <img class="imgprofile " src="../images/pic-ex.jpg">
-                              </div>
-                        
+                                <div class="col-sm-10 col-lg-5 ">
+                                  <div class="mt-2 d-flex justify-content-center ">
+                                    <form method="post" action="/user" enctype="multipart/form-data">
+                                    <label for="file">
+                                      <img id="output" class="imgprofile " src="../images/pic-ex.jpg">
+                                      <input id="file" name="image" type="file" onchange="loadFile(event)"/>
+                                    </label>
+                                  </form>
+                                  </div>
 
                           </div>
 
@@ -217,7 +221,11 @@ e.target.style.setProperty('--y', y + 'px');
           document.getElementById("main").style.marginLeft= "0";
         }
 
-
+        function loadFile(event) {
+        var image = document.getElementById("output");
+        var data = image.src = URL.createObjectURL(event.target.files[0]);
+            console.log(data)
+        };
        
         </script>
 </body>
