@@ -145,7 +145,7 @@
                                   <div class="mt-2 d-flex justify-content-center ">
                                     <form method="post" action="/profile" enctype="multipart/form-data">
                                     <label for="file">
-                                      <img id="output" class="imgprofile " src="../images/pic-ex.jpg">
+                                      <img id="output" class="imgprofile " src=<%= imgpath %> >
                                       <input style="display: none;" id="file" name="image" type="file" onchange="loadFile(event)" required/>
                                       <input type="submit" value="upload">
                                     </label>
