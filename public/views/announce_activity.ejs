@@ -110,102 +110,30 @@
 
 <div class="container-box" style="background-color: rgb(255, 255, 255);">
   <a href="/main"> < กลับไปที่หน้าหลัก</a>
-<div class="row">
 
-    <div class="col-md-6  col-xxl-4">
-      <a href="/sub_activity">  <div class="card" >
+
+<div style="display: grid; grid-template-columns: repeat(3,1fr);">
+  <% for(var i=0; i < namevnt.length; i++) { %>  
+    <div>
+      <% i+1 %> 
+      <a href="/sub_activity" value=<% namevnt[i].id%> ><div class="card">
           <span class="card-title">
-            <h3>กิจกรรมจิตอาสา กิจกรรมจิตอาสากิจกรรมจิตอา กิจกรรมจิตอาสากิจกรรมจิตอาส</h3>
+              <h3><%= namevnt[i].name %></h3> 
           </span>
-          <img src="../images/มศวว.jpeg" class="card-img-top" alt="...">
-       
-          <div class="card-body">
-            <p class="card-text">เนื้อหาตัวอย่างในการวาง content ซึ่งต้องมีการเปลี่ยนแปลงภายหลัง</p>
-          </div>
-          <span class="card-meta">
-            Published: June 18th, 2015
-          </span>
+            <img src="../images/มศวว.jpeg" class="card-img-top" alt="...">
 
+          <div class="card-body">
+            <p class="card-text">
+            <%= namevnt[i].detail %>
+            </p>
+          </div>
+
+          <span class="card-meta">
+              Published: <%= namevnt[i].posted.toLocaleDateString() %>
+          </span>
       </div></a>
-
     </div>
-
-    <div class="col-md-6  col-xxl-4">
-        <div class="card" >
-          <span class="card-title">
-            <h3>กิจกรรมจิตอาสา กิจกรรมจส</h3>
-          </span>
-          <img src="../images/มศว.png" class="card-img-top" alt="...">
-       
-          <div class="card-body">
-            <p class="card-text">เนื้อหาตัวอย่างในการวาง content ซึ่งต้องมีการเปลี่ยนแปลงภายหลังthe card's content.</p>
-          </div>
-          <span class="card-meta">
-            Published: June 18th, 2015
-          </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="col-md-6  col-xxl-4">
-        <div class="card" >
-          <span class="card-title">
-            <h3>กิจกรรมจิตอาสา is a new</h3>
-          </span>
-          <img src="../images/swu_bg.jpeg" class="card-img-top" alt="...">
-       
-          <div class="card-body">
-            <p class="card-text">อ the card's content.</p>
-          </div>
-          <span class="card-meta">
-            Published: June 18th, 2015
-          </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="col-md-6  col-xxl-4">
-        <div class="card" >
-          <span class="card-title">
-            <h3>กิจกรรมจิตอาสา กิจกรรมจิตอาสากิจกรรมจิตอาส</h3>
-          </span>
-          <img src=<%= imgpath %> class="card-img-top" alt="...">
-       
-          <div class="card-body">
-            <p class="card-text">เนื้อหาตัวอย่าปลงภายหลังเนื้อหาตัวอย่างในthe card's content.</p>
-          </div>
-          <span class="card-meta">
-            Published: June 18th, 2015
-          </span>
-
-      </div>
-
-    </div>
-
-
-
-    <div class="col-md-6  col-xxl-4">
-        <div class="card" >
-          <span class="card-title">
-            <h3>name of activityy</h3>
-          </span>
-          <img src="../images/มศวว.jpeg" class="card-img-top" alt="...">
-       
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <span class="card-meta">
-            Published: June 18th, 2015
-          </span>
-
-      </div>
-
-    </div>
-
+    <% } %>
 </div>
     
 

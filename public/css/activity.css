@@ -109,7 +109,7 @@ body {
   
   .card {
     position: relative;
-    margin-left: 30px;
+    margin-left: auto;
     margin-top:50px;
     padding-left: 0%;
     padding-right: 0%;
@@ -122,10 +122,9 @@ body {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
     min-width:0;
     border: 0px ;
+    
   }
 
   .card--admin {
@@ -269,6 +268,11 @@ left: 1%;
     transition-timing-function: ease-in-out;
   }
 
+  .card-body .p{
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+
   .card:hover, .card:focus {
     background: white;
     -moz-box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 20px 0px;
@@ -297,6 +301,8 @@ left: 1%;
     font-size: 15px;
     height: 100px;
     text-indent: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
   }
 
 .container-box{
@@ -306,11 +312,18 @@ left: 1%;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-  
+
+.cardContainer {
+  display: grid;
+  /* you can change the 4 below to 3 if you only want 3 cards per row */
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
 .bg-building{
   position: relative;
   background-image: url(../images/history-1705x960--1.jpeg);
-background-repeat: no-repeat;
+background-repeat: repeat;
 height: 450px;
 
 }

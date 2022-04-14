@@ -16,7 +16,7 @@ try {
               if (error) throw error;
               // db connect read request 
               session.img = results[0].img_user;
-            dbConnectionn.query('SELECT request.idRequest,user.ID_Student,user.Firstname,user.Lastname,Major.name_maj,user.user_phone,event.Name_Event,event.start_Event,event.end_Event FROM request INNER JOIN event ON request.ID_event=event.ID_event INNER JOIN type_event ON event.idType_Event=type_event.idType_Event INNER JOIN user ON request.Username=user.Username INNER JOIN major ON user.Major=major.idMajor WHERE user.Username = ? AND request.idRequest = ?',[session.username,req.body.reqiD],function (error, results, fields) {
+            dbConnectionn.query('SELECT request.idRequest,user.ID_Student,user.Firstname,user.Lastname,Major.name_maj,user.user_phone,event.Name_Event,event.start_Event,event.end_Event,request.file_img ,request.file_pdf FROM request INNER JOIN event ON request.ID_event=event.ID_event INNER JOIN type_event ON event.idType_Event=type_event.idType_Event INNER JOIN user ON request.Username=user.Username INNER JOIN major ON user.Major=major.idMajor WHERE user.Username = ? AND request.idRequest = ?',[session.username,req.body.reqiD],function (error, results, fields) {  
               session.datax = results;
               console.log("datax = ",session.datax)
                 response.render("details_submit", { 
@@ -32,8 +32,7 @@ try {
                   gender : session.gender
                 });
             }); 
-            // end read request
-                
+            // end read request 
             } else {
                console.log("HAS NO data")
             }
@@ -45,14 +44,5 @@ try {
     console.log(`Something went wrong with : sub_checkforstd ` ,error);
 }
 });
-
-// router.post('/details_submit',async (req,res)=>{
-//   var datafile = new Promise ((resolve,rejects)=>{
-//     dbConnectionn.query(`SELECT `)
-//   })
-// })
-
-
-
 
 module.exports =router;
